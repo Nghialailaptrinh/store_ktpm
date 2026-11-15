@@ -1,10 +1,10 @@
-package vn.edu.sales.api.system.user;
+package vn.edu.sales.api.user;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vn.edu.sales.application.services.CurrentUserService;
+import vn.edu.sales.application.service.CurrentUserService;
 
 import java.util.List;
 

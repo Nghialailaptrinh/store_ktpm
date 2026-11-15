@@ -1,10 +1,10 @@
-package vn.edu.sales.api.system.order;
+package vn.edu.sales.api.order;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
-import vn.edu.sales.application.services.OrderService;
+import vn.edu.sales.application.service.OrderService;
 import vn.edu.sales.domain.model.OrderStatus;
 
 @RestController

@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system.common;
+package vn.edu.sales.api.common;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;

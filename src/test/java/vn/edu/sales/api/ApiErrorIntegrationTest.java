@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system;
+package vn.edu.sales.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system;
+package vn.edu.sales.api;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;

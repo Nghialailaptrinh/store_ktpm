@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system.user;
+package vn.edu.sales.api.user;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import vn.edu.sales.application.services.PasswordChangeService;
+import vn.edu.sales.application.service.PasswordChangeService;
 
 @RestController
 @RequestMapping("/api/users/me/password")

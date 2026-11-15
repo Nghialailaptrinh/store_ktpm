@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import vn.edu.sales.application.port.out.PasswordHasher;
 import vn.edu.sales.application.port.out.TransactionRunner;
 import vn.edu.sales.application.port.out.UserRepository;
-import vn.edu.sales.application.services.PasswordChangeService;
 import vn.edu.sales.domain.exception.InvalidCredentialsException;
 import vn.edu.sales.domain.model.Role;
 import vn.edu.sales.domain.model.User;

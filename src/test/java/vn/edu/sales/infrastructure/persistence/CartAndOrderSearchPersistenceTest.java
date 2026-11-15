@@ -11,7 +11,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import vn.edu.sales.application.port.out.*;
 import vn.edu.sales.domain.model.*;
-import vn.edu.sales.application.services.OrderService;
+import vn.edu.sales.application.service.OrderService;
 import vn.edu.sales.domain.exception.BusinessConflictException;
 import vn.edu.sales.infrastructure.persistence.order.JdbcOrderSearchStore;
 

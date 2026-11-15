@@ -3,13 +3,13 @@ package vn.edu.sales.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import vn.edu.sales.application.port.out.*;
+import vn.edu.sales.application.service.AuthService;
+import vn.edu.sales.application.service.CartService;
+import vn.edu.sales.application.service.CurrentUserService;
 import vn.edu.sales.application.service.InventoryService;
+import vn.edu.sales.application.service.OrderService;
+import vn.edu.sales.application.service.PasswordChangeService;
 import vn.edu.sales.application.service.ProductService;
-import vn.edu.sales.application.services.AuthService;
-import vn.edu.sales.application.services.CurrentUserService;
-import vn.edu.sales.application.services.CartService;
-import vn.edu.sales.application.services.OrderService;
-import vn.edu.sales.application.services.PasswordChangeService;
 
 @Configuration
 public class ApplicationBeanConfig {

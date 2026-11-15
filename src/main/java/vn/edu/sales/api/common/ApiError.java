@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system.common;
+package vn.edu.sales.api.common;
 
 import java.time.Instant;
 import java.util.Map;

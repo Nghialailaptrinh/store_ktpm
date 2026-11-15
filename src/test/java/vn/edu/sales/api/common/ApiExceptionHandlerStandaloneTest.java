@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system.common;
+package vn.edu.sales.api.common;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

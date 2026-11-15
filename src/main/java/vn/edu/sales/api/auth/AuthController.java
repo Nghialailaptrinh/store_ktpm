@@ -1,4 +1,4 @@
-package vn.edu.sales.api.system.auth;
+package vn.edu.sales.api.auth;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import vn.edu.sales.application.services.AuthService;
+import vn.edu.sales.application.service.AuthService;
 import vn.edu.sales.domain.model.Role;
 
 @RestController

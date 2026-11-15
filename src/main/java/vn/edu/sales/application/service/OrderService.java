@@ -1,4 +1,4 @@
-package vn.edu.sales.application.services;
+package vn.edu.sales.application.service;
 
 import vn.edu.sales.application.port.out.*;
 import vn.edu.sales.domain.exception.BusinessConflictException;
