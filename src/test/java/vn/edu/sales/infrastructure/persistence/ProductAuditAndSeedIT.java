@@ -90,7 +90,7 @@ class ProductAuditAndSeedIT {
 
         List<InventoryStore.Movement> movements = inventoryStore.byProduct(created.id());
         assertThat(movements).hasSize(1);
-        InventoryStore.Movement openMv = movements.getFirst();
+        InventoryStore.Movement openMv = movements.get(0);
         assertThat(openMv.type()).isEqualTo("OPENING_BALANCE");
         assertThat(openMv.quantityChange()).isEqualTo(20);
         assertThat(openMv.stockBefore()).isZero();

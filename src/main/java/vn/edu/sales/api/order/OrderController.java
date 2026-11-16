@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import vn.edu.sales.application.service.OrderCommandService;
 import vn.edu.sales.application.service.OrderService;
 import vn.edu.sales.domain.model.Order;
 import vn.edu.sales.domain.model.OrderItem;
@@ -18,16 +19,33 @@ import java.util.List;
 @RequestMapping("/api/orders")
 public class OrderController {
     private final OrderService orderService;
+    private final OrderCommandService orderCommandService;
+
+    public OrderController(OrderService orderService, OrderCommandService orderCommandService) {
+        this.orderService = orderService;
+        this.orderCommandService = orderCommandService;
+    }
 
     public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+        this(orderService, null);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderResponse create(Authentication authentication, @Valid @RequestBody CreateOrderRequest request) {
+    public OrderResponse create(
+            Authentication authentication,
+            @Valid @RequestBody CreateOrderRequest request,
+            @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey
+    ) {
         List<OrderService.CreateLine> lines = request.items().stream()
                 .map(item -> new OrderService.CreateLine(item.productId(), item.quantity())).toList();
+        if (orderCommandService != null && idempotencyKey != null && !idempotencyKey.isBlank()) {
+            OrderCommandService.DirectOrderRequest directRequest = new OrderCommandService.DirectOrderRequest(
+                    authentication.getName(), request.recipientName(), request.recipientPhone(),
+                    request.shippingAddress(), lines
+            );
+            return OrderResponse.from(orderCommandService.createDirect(directRequest, idempotencyKey));
+        }
         return OrderResponse.from(orderService.create(authentication.getName(), request.recipientName(),
                 request.recipientPhone(), request.shippingAddress(), lines));
     }

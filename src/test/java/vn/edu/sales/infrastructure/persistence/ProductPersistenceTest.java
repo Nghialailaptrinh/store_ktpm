@@ -84,15 +84,15 @@ class ProductPersistenceTest {
     void searchWithKeywordMatchesNameOrSkuCaseInsensitiveAndExcludesInactive() {
         ProductPage nameMatch = adapter.searchActive("bàn phím", 0, 10);
         assertThat(nameMatch.totalElements()).isEqualTo(1);
-        assertThat(nameMatch.items().getFirst().sku()).isEqualTo(activeKeyboard.sku());
+        assertThat(nameMatch.items().get(0).sku()).isEqualTo(activeKeyboard.sku());
 
         ProductPage skuMatchUpper = adapter.searchActive("MS-01", 0, 10);
         assertThat(skuMatchUpper.totalElements()).isEqualTo(1);
-        assertThat(skuMatchUpper.items().getFirst().sku()).isEqualTo(activeMouse.sku());
+        assertThat(skuMatchUpper.items().get(0).sku()).isEqualTo(activeMouse.sku());
 
         ProductPage skuMatchLower = adapter.searchActive("ms-01", 0, 10);
         assertThat(skuMatchLower.totalElements()).isEqualTo(1);
-        assertThat(skuMatchLower.items().getFirst().sku()).isEqualTo(activeMouse.sku());
+        assertThat(skuMatchLower.items().get(0).sku()).isEqualTo(activeMouse.sku());
     }
 
     @Test

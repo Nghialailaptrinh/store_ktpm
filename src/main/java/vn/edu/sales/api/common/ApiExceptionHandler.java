@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import vn.edu.sales.domain.exception.BusinessConflictException;
+import vn.edu.sales.domain.exception.IdempotencyConflictException;
 import vn.edu.sales.domain.exception.InvalidCredentialsException;
 import vn.edu.sales.domain.exception.ResourceNotFoundException;
 
@@ -36,6 +37,11 @@ public class ApiExceptionHandler {
     @ExceptionHandler(BusinessConflictException.class)
     ResponseEntity<ApiError> handleConflict(BusinessConflictException exception, HttpServletRequest request) {
         return error(HttpStatus.CONFLICT, "BUSINESS_CONFLICT", exception.getMessage(), request.getRequestURI(), null);
+    }
+
+    @ExceptionHandler(IdempotencyConflictException.class)
+    ResponseEntity<ApiError> handleIdempotencyConflict(IdempotencyConflictException exception, HttpServletRequest request) {
+        return error(HttpStatus.CONFLICT, "IDEMPOTENCY_CONFLICT", exception.getMessage(), request.getRequestURI(), null);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

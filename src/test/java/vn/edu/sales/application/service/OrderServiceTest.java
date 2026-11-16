@@ -63,9 +63,9 @@ class OrderServiceTest {
 
         assertThat(result.status()).isEqualTo(OrderStatus.PENDING);
         assertThat(result.totalAmount()).isEqualByComparingTo("251.00");
-        assertThat(result.items().getFirst().productName()).isEqualTo("Bàn phím");
-        assertThat(result.items().getFirst().unitPrice()).isEqualByComparingTo("125.50");
-        verify(products).saveAll(argThat(list -> list.size() == 1 && list.getFirst().stockQuantity() == 3));
+        assertThat(result.items().get(0).productName()).isEqualTo("Bàn phím");
+        assertThat(result.items().get(0).unitPrice()).isEqualByComparingTo("125.50");
+        verify(products).saveAll(argThat(list -> list.size() == 1 && list.get(0).stockQuantity() == 3));
         verify(inventory).record(eq(11L), eq(21L), eq("SALE"), eq(-2), eq(5), eq(3),
                 anyString(), eq("Đặt hàng"), eq(3L));
     }
@@ -132,7 +132,7 @@ class OrderServiceTest {
         assertThat(service.changeStatus("admin@example.com", 21L, OrderStatus.CANCELLED).status()).isEqualTo(OrderStatus.CANCELLED);
         assertThat(service.changeStatus("admin@example.com", 21L, OrderStatus.CANCELLED).status()).isEqualTo(OrderStatus.CANCELLED);
 
-        verify(products, times(1)).saveAll(argThat(list -> list.getFirst().stockQuantity() == 7));
+        verify(products, times(1)).saveAll(argThat(list -> list.get(0).stockQuantity() == 7));
         verify(inventory, times(1)).record(eq(11L), eq(21L), eq("SALE_REVERSAL"), eq(2),
                 eq(5), eq(7), anyString(), anyString(), eq(4L));
         verify(orders, times(1)).save(any(Order.class));

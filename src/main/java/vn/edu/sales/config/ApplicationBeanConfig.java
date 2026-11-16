@@ -7,6 +7,7 @@ import vn.edu.sales.application.service.AuthService;
 import vn.edu.sales.application.service.CartService;
 import vn.edu.sales.application.service.CurrentUserService;
 import vn.edu.sales.application.service.InventoryService;
+import vn.edu.sales.application.service.OrderCommandService;
 import vn.edu.sales.application.service.OrderService;
 import vn.edu.sales.application.service.PasswordChangeService;
 import vn.edu.sales.application.service.ProductService;
@@ -53,5 +54,12 @@ public class ApplicationBeanConfig {
     PasswordChangeService passwordChangeService(UserRepository users, PasswordHasher passwords,
                                                 TransactionRunner transactions) {
         return new PasswordChangeService(users, passwords, transactions);
+    }
+
+    @Bean
+    OrderCommandService orderCommandService(OrderService orders, CartService carts,
+                                           IdempotencyStore idempotency, CustomerCommandLock locks,
+                                           TransactionRunner transactions, UserRepository users) {
+        return new OrderCommandService(orders, carts, idempotency, locks, transactions, users);
     }
 }

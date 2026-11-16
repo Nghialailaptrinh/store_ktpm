@@ -76,14 +76,14 @@ class CartAndOrderSearchPersistenceTest {
         carts.put(alice, keyboard.id(), 2);
         var lines = carts.findByUser(alice);
         assertThat(lines).extracting(CartStore.Line::productId).containsExactly(keyboard.id(), mouse.id());
-        var first = lines.getFirst();
+        var first = lines.get(0);
         assertThat(first.sku()).isEqualTo("D3-KB");
         assertThat(first.name()).isEqualTo("Keyboard");
         assertThat(first.unitPrice()).isEqualByComparingTo("120000");
         assertThat(first.stockQuantity()).isEqualTo(10);
         assertThat(first.productStatus()).isEqualTo("ACTIVE");
         assertThat(first.quantity()).isEqualTo(2);
-        assertThat(lines.getLast().productStatus()).isEqualTo("INACTIVE");
+        assertThat(lines.get(lines.size() - 1).productStatus()).isEqualTo("INACTIVE");
     }
 
     @Test

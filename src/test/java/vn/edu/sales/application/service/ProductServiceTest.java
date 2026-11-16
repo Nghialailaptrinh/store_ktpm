@@ -137,7 +137,7 @@ class ProductServiceTest {
 
         assertThat(product.stockQuantity()).isEqualTo(10);
         assertThat(inventoryStore.all()).hasSize(1);
-        var movement = inventoryStore.all().getFirst();
+        var movement = inventoryStore.all().get(0);
         assertThat(movement.productId()).isEqualTo(product.id());
         assertThat(movement.type()).isEqualTo("OPENING_BALANCE");
         assertThat(movement.quantityChange()).isEqualTo(10);

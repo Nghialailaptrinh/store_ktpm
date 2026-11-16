@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import vn.edu.sales.application.port.out.CartStore;
 import vn.edu.sales.application.service.CartService;
+import vn.edu.sales.application.service.OrderCommandService;
 
 import java.util.List;
 
@@ -17,8 +18,16 @@ import java.util.List;
 @RequestMapping("/api/cart")
 public class CartController {
     private final CartService service;
+    private final OrderCommandService orderCommandService;
 
-    public CartController(CartService service) { this.service = service; }
+    public CartController(CartService service, OrderCommandService orderCommandService) {
+        this.service = service;
+        this.orderCommandService = orderCommandService;
+    }
+
+    public CartController(CartService service) {
+        this(service, null);
+    }
 
     @GetMapping
     public List<CartStore.Line> mine(Authentication authentication) {
@@ -43,8 +52,18 @@ public class CartController {
 
     @PostMapping("/checkout")
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderController.OrderResponse checkout(Authentication authentication,
-                                                  @Valid @RequestBody CheckoutRequest request) {
+    public OrderController.OrderResponse checkout(
+            Authentication authentication,
+            @Valid @RequestBody CheckoutRequest request,
+            @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKey
+    ) {
+        if (orderCommandService != null && idempotencyKey != null && !idempotencyKey.isBlank()) {
+            OrderCommandService.CartCheckoutRequest checkoutRequest = new OrderCommandService.CartCheckoutRequest(
+                    authentication.getName(), request.recipientName(),
+                    request.recipientPhone(), request.shippingAddress()
+            );
+            return OrderController.OrderResponse.from(orderCommandService.checkoutCart(checkoutRequest, idempotencyKey));
+        }
         return OrderController.OrderResponse.from(service.checkout(authentication.getName(),
                 request.recipientName(), request.recipientPhone(), request.shippingAddress()));
     }

@@ -53,7 +53,7 @@ public abstract class MemberAApiTestSupport {
             assertThat(connection.getMetaData().getURL())
                     .startsWith("jdbc:h2:mem:");
         }
-        for (String table : List.of("inventory_movements", "cart_items", "order_items", "orders", "products", "users")) {
+        for (String table : List.of("order_idempotency", "inventory_movements", "cart_items", "order_items", "orders", "products", "users")) {
             jdbc.update("DELETE FROM " + table);
         }
     }

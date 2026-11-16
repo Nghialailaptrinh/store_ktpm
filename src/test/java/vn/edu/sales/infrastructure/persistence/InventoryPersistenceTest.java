@@ -74,7 +74,7 @@ class InventoryPersistenceTest {
         assertThat(products.findById(product.id()).orElseThrow().stockQuantity()).isEqualTo(8);
         var movements = inventory.byProduct(product.id());
         assertThat(movements).hasSize(1);
-        var movement = movements.getFirst();
+        var movement = movements.get(0);
         assertThat(movement.actorUserId()).isEqualTo(actor.id());
         assertThat(movement.orderId()).isNull();
         assertThat(movement.type()).isEqualTo("SALE");
