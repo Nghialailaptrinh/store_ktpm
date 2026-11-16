@@ -26,10 +26,6 @@ public class OrderController {
         this.orderCommandService = orderCommandService;
     }
 
-    public OrderController(OrderService orderService) {
-        this(orderService, null);
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderResponse create(

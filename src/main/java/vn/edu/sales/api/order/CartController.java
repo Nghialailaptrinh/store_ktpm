@@ -24,11 +24,6 @@ public class CartController {
         this.service = service;
         this.orderCommandService = orderCommandService;
     }
-
-    public CartController(CartService service) {
-        this(service, null);
-    }
-
     @GetMapping
     public List<CartStore.Line> mine(Authentication authentication) {
         return service.mine(authentication.getName());
