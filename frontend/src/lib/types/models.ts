@@ -2,6 +2,8 @@
 
 export type Role = 'ADMIN' | 'CUSTOMER';
 
+export type ProductStatus = "ACTIVE" | "INACTIVE";
+
 export interface Product {
   id: number;
   sku: string;
@@ -31,7 +33,7 @@ export interface CartLine {
   quantity: number;
 }
 
-export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'SHIPPING' | 'DELIVERED' | 'CANCELLED';
+export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'SHIPPING' | 'COMPLETED' | 'CANCELLED';
 
 export interface OrderItem {
   id: number;
@@ -84,4 +86,20 @@ export interface CheckoutPayload {
   recipientPhone: string;
   shippingAddress: string;
   items: { productId: number; quantity: number }[];
+}
+export type InventoryMovementType = "OPENING_BALANCE" | "PURCHASE" |
+    "SALE" | "SALE_REVERSAL" | "ADJUSTMENT_IN" | "ADJUSTMENT_OUT";
+
+export interface InventoryMovement {
+  id: number;
+  productId: number;
+  orderId: number | null;
+  type: InventoryMovementType;
+  quantityChange: number;
+  stockBefore: number;
+  stockAfter: number;
+  referenceCode: string | null;
+  note: string | null;
+  actorUserId: number | null;
+  createdAt: string;
 }

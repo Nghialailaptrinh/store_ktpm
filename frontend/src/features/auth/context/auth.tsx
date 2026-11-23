@@ -2,8 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
-import http, { getToken, setToken } from './http/client';
-import type { AuthResult, CurrentUser } from './types/models';
+import http, { getToken, setToken } from '../../lib/http/client';
+import type { AuthResult, CurrentUser } from '../../lib/types/models';
 
 interface AuthContextValue {
   user: CurrentUser | null;
