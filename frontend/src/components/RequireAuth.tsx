@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth';
+import { useAuth } from '@/features/auth/context/auth';
 
 /** Chỉ cho hiển thị nội dung khi đã đăng nhập; nếu chưa thì chuyển sang /login. */
 export default function RequireAuth({ children }: { children: ReactNode }) {

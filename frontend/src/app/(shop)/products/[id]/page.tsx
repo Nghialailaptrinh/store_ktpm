@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth';
+import { useAuth } from '@/features/auth/context/auth';
 import { getProductById } from '@/features/catalog/api/catalogApi';
 import { updateItem } from '@/features/cart/api/cartApi';
 import { formatVND } from '@/lib/format';

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
-import { AuthProvider } from '@/lib/auth';
+import { AuthProvider } from '@/features/auth/context/auth';
 
 export const metadata: Metadata = {
   title: 'Single Store',

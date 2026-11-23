@@ -2,7 +2,7 @@
 
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAuth } from '@/lib/auth';
+import { useAuth } from '@/features/auth/context/auth';
 import { getProducts } from '@/features/catalog/api/catalogApi';
 import { updateItem } from '@/features/cart/api/cartApi';
 import ProductGrid from '@/features/catalog/components/ProductGrid';

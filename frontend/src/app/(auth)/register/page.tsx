@@ -4,7 +4,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/lib/auth';
+import { useAuth } from '@/features/auth/context/auth';
 
 export default function RegisterPage() {
   const { register } = useAuth();
@@ -35,49 +35,49 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="auth-card">
-      <h1>Đăng ký tài khoản</h1>
-      {error ? <p className="error">{error}</p> : null}
-      <form className="form" onSubmit={onSubmit}>
-        <label>
-          Họ và tên
-          <input
-            className="input"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            placeholder="Nguyễn Văn A"
-            required
-          />
-        </label>
-        <label>
-          Email
-          <input
-            className="input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-          />
-        </label>
-        <label>
-          Mật khẩu (tối thiểu 8 ký tự)
-          <input
-            className="input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            minLength={8}
-            required
-          />
-        </label>
-        <button className="btn btn-primary" type="submit" disabled={submitting}>
-          {submitting ? 'Đang xử lý…' : 'Đăng ký'}
-        </button>
-      </form>
-      <p className="muted">
-        Đã có tài khoản? <Link href="/login">Đăng nhập</Link>
-      </p>
-    </div>
+      <div className="auth-card">
+        <h1>Đăng ký tài khoản</h1>
+        {error ? <p className="error">{error}</p> : null}
+        <form className="form" onSubmit={onSubmit}>
+          <label>
+            Họ và tên
+            <input
+                className="input"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Nguyễn Văn A"
+                required
+            />
+          </label>
+          <label>
+            Email
+            <input
+                className="input"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+            />
+          </label>
+          <label>
+            Mật khẩu (tối thiểu 8 ký tự)
+            <input
+                className="input"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={8}
+                required
+            />
+          </label>
+          <button className="btn btn-primary" type="submit" disabled={submitting}>
+            {submitting ? 'Đang xử lý…' : 'Đăng ký'}
+          </button>
+        </form>
+        <p className="muted">
+          Đã có tài khoản? <Link href="/login">Đăng nhập</Link>
+        </p>
+      </div>
   );
 }
